@@ -101,10 +101,11 @@ async function oneTimeFunc () {
   // Get proclaim message JSON
   [proclaimJSON] = await getLinksJSON([proclaimLink]);
     // Create the dropdown
-    document.addEventListener("DOMContentLoaded", function(event) {
+
+
       // Add a hidden iframe and a hidden form
       createDropdown()
-   });
+   
   
   
  
@@ -113,6 +114,7 @@ async function oneTimeFunc () {
   [questionVerses] = await getLinksJSON([questionVerseLink]);
   // Get the Translations
   translationsArr = await getTranslations(translationLinks);
+  
   try {
     setupDB()
   } catch (error) {
@@ -124,6 +126,8 @@ async function oneTimeFunc () {
   // This func is called only once, next time it is just an empty block of code
 
 }
+
+
 
 // Return english translated text for the given string
 async function translate (str) {
@@ -1199,7 +1203,7 @@ async function showResult (verses) {
 }
 
 // Creates and add listing to the dropdown based on editions.json
-async function createDropdown () {
+ function createDropdown () {
   console.log("inside createDropdown");
   const dropdownObj = {}
   // Default lang to select
@@ -1247,7 +1251,7 @@ function sortObjByKeys (obj) {
   return sortedObj
 }
 
-window.changeLang = async function changeLang () {
+window.changeLang =  function changeLang () {
   console.log("inside changeLang");
   const langSelected = $('#langdropdown option:selected').text()
   // Save selected langauge in cookie, to allow dropdown selection later based on cookie value
@@ -1282,7 +1286,7 @@ window.changeLang = async function changeLang () {
   // Add the translated hints
   for (const val of translatedHintArr) { $('#hintplaceholder').append('<div class="carousel-item text-center">' + val + '</div>') }
   // Show the result, if exists
-  await showResult(gloConfirmedVerses)
+   showResult(gloConfirmedVerses)
   // Change the donate url according to language
   changeDonateURL(translatedHintArr)
 }
