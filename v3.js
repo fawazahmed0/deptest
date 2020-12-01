@@ -104,7 +104,7 @@ async function oneTimeFunc () {
 
 
       // Add a hidden iframe and a hidden form
-      createDropdown()
+      createDropdown();
    
   
   
