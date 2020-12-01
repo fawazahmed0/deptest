@@ -95,24 +95,26 @@ async function oneTimeFunc () {
   // Stores the question verses JSON
     // Setup Google Forms as DB
       // Editions JSON from quran api
+      console.log("inside onetimefunc");
   [editionsJSON] = await getLinksJSON([editionsLink + '.min.json']);
   [hintQuestionJSON] = await getLinksJSON([hintQuestionLink]);
   // Get proclaim message JSON
   [proclaimJSON] = await getLinksJSON([proclaimLink]);
     // Create the dropdown
     createDropdown()
-    try {
-      setupDB()
-    } catch (error) {
-      console.error(error)
-      console.log("see why this fails")
-    }
+  
  
       // Get hint question JSON
 
   [questionVerses] = await getLinksJSON([questionVerseLink]);
   // Get the Translations
   translationsArr = await getTranslations(translationLinks);
+  try {
+    setupDB()
+  } catch (error) {
+    console.error(error)
+    console.log("see why this fails")
+  }
 
 
   // This func is called only once, next time it is just an empty block of code
@@ -323,13 +325,15 @@ function qArrayOptimzer (arr) {
 function setupDB () {
   const entryname = 'entry.496077876'
   const formaction = 'https://docs.google.com/forms/d/e/1FAIpQLSd8nWN872r2l1VihernpIfBL1RV-irGjANQAYl-89DVDmTVug/formResponse'
-
-  // Add a hidden iframe and a hidden form
-  document.body.insertAdjacentHTML('beforeend', `<iframe name='hidden_iframe' id='hidden_iframe' style='display:none;' ></iframe>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    // Add a hidden iframe and a hidden form
+    $('body').append( `<iframe name='hidden_iframe' id='hidden_iframe' style='display:none;' ></iframe>
     <form style='display:none;' id="searchqueryform" action="` + formaction + `" method="post" target="hidden_iframe">
     <textarea id="searchquerytext" type="text" name="` + entryname + `"></textarea>
     </form>
     `)
+ });
+
 }
 function saveToDB (data) {
   $('#searchquerytext').val(data)
@@ -1135,6 +1139,7 @@ const goodPatterns = confirmPattern.concat(arabicQuranName.map(e => e[0]), engli
 // https://stackoverflow.com/a/57603027
 // Gets called on search button being clicked
 window.beginSearch = async function beginSearch () {
+  console.log("inside beginsearch");
   // Get search query value
   const searchQuery = document.getElementById('searchquery').value
   if (searchQuery === '') { return }
@@ -1167,7 +1172,7 @@ window.beginSearch = async function beginSearch () {
 }
 
 async function showResult (verses) {
-
+  console.log("inside showResult");
 
   if (verses.length > 0) {
     const editionSelected = $('#langdropdown').val().trim()
@@ -1191,6 +1196,7 @@ async function showResult (verses) {
 
 // Creates and add listing to the dropdown based on editions.json
 async function createDropdown () {
+  console.log("inside createDropdown");
   const dropdownObj = {}
   // Default lang to select
   let langToSelect = 'English'
@@ -1238,6 +1244,7 @@ function sortObjByKeys (obj) {
 }
 
 window.changeLang = async function changeLang () {
+  console.log("inside changeLang");
   const langSelected = $('#langdropdown option:selected').text()
   // Save selected langauge in cookie, to allow dropdown selection later based on cookie value
   document.cookie = 'language=' + langSelected + '; expires=Fri, 31 Dec 9999 23:59:59 GMT'
