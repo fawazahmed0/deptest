@@ -101,7 +101,11 @@ async function oneTimeFunc () {
   // Get proclaim message JSON
   [proclaimJSON] = await getLinksJSON([proclaimLink]);
     // Create the dropdown
-    createDropdown()
+    document.addEventListener("DOMContentLoaded", function(event) {
+      // Add a hidden iframe and a hidden form
+      createDropdown()
+   });
+  
   
  
       // Get hint question JSON
@@ -1315,4 +1319,7 @@ function changeDonateURL (hintArr) {
   $('#donatebtn').prop('href', fullurl)
 }
 
-const initVar = oneTimeFunc()
+
+let initVar 
+
+initVar = oneTimeFunc()
