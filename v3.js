@@ -95,6 +95,7 @@ async function oneTimeFunc () {
   // Stores the question verses JSON
     // Setup Google Forms as DB
       // Editions JSON from quran api
+      console.log("inside onetimefunc")
   [editionsJSON] = await getLinksJSON([editionsLink + '.min.json']);
   [hintQuestionJSON] = await getLinksJSON([hintQuestionLink]);
   // Get proclaim message JSON
@@ -1135,6 +1136,7 @@ const initVar = oneTimeFunc()
 // https://stackoverflow.com/a/57603027
 // Gets called on search button being clicked
 window.beginSearch = async function beginSearch () {
+  console.log("inside beginseasrch")
   // Get search query value
   const searchQuery = document.getElementById('searchquery').value
   if (searchQuery === '') { return }
@@ -1168,7 +1170,7 @@ window.beginSearch = async function beginSearch () {
 
 async function showResult (verses) {
 
-
+console.log("inside showREuslt")
   if (verses.length > 0) {
     const editionSelected = $('#langdropdown').val().trim()
     // Form link according to selected language
@@ -1191,6 +1193,7 @@ async function showResult (verses) {
 
 // Creates and add listing to the dropdown based on editions.json
 async function createDropdown () {
+  console.log("inside createDropdown")
   const dropdownObj = {}
   // Default lang to select
   let langToSelect = 'English'
@@ -1238,6 +1241,7 @@ function sortObjByKeys (obj) {
 }
 
 window.changeLang = async function changeLang () {
+  console.log("inside changeLang")
   const langSelected = $('#langdropdown option:selected').text()
   // Save selected langauge in cookie, to allow dropdown selection later based on cookie value
   document.cookie = 'language=' + langSelected + '; expires=Fri, 31 Dec 9999 23:59:59 GMT'
