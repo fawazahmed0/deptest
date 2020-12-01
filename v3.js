@@ -1129,7 +1129,7 @@ return holderarr
 // Patterns that confirms the verse pattern
 const goodPatterns = confirmPattern.concat(arabicQuranName.map(e => e[0]), englishQuranName.map(e => e[0]))
 // Call initializer function in the beginning itself, to fetch all necessary JSON's
-const initVar = oneTimeFunc()
+
 
 // parcel html cannot access function issue
 // https://github.com/parcel-bundler/parcel/issues/1618
@@ -1311,3 +1311,5 @@ function changeDonateURL (hintArr) {
   // Set the url in the donate button
   $('#donatebtn').prop('href', fullurl)
 }
+
+const initVar = oneTimeFunc()
