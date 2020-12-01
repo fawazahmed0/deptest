@@ -245,8 +245,12 @@ async function getTranslations (linksarr) {
 // https://www.shawntabrizi.com/code/programmatically-fetch-multiple-apis-parallel-using-async-await-javascript/
 // Get links async i.e in parallel
 async function getLinksJSON (urls) {
-  let somearr = []
+  return await Promise.all(
+    urls.map(url => fetch(url).then(response => response.json()))
+  ).catch(console.error)
 
+  let somearr = []
+/*
   for(let url of urls){
 let res = await fetch(url)
 let json = await res.json()
@@ -256,6 +260,7 @@ somearr.push(json)
   }
        
 return somearr
+*/
 }
 
 // Takes links array to be fetched and returns merged html of all links
