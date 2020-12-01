@@ -1326,4 +1326,6 @@ function changeDonateURL (hintArr) {
 
 let initVar 
 
-initVar = oneTimeFunc()
+window.addEventListener('DOMContentLoaded', (event) => {
+  initVar = oneTimeFunc()
+});
